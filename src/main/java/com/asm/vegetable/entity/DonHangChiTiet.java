@@ -19,7 +19,7 @@ public class DonHangChiTiet implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
-	private DonHangPK donhangchitiet_id;
+	private DonHangPK id;
 	
 	@ManyToOne 
 	@JoinColumn(name = "donhang_id",insertable = false,updatable = false)
@@ -48,12 +48,14 @@ public class DonHangChiTiet implements Serializable{
 	@Column
 	private Date ngaycnhap;
 
-	public DonHangPK getDonhangchitiet_id() {
-		return donhangchitiet_id;
+	
+
+	public DonHangPK getId() {
+		return id;
 	}
 
-	public void setDonhangchitiet_id(DonHangPK donhangchitiet_id) {
-		this.donhangchitiet_id = donhangchitiet_id;
+	public void setId(DonHangPK id) {
+		this.id = id;
 	}
 
 	public DonHang getDonhang() {

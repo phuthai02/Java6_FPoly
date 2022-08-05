@@ -19,7 +19,7 @@ public class GioHang implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private GioHangPK giohang_id;
+	private GioHangPK id;
 	
 	@ManyToOne 
 	@JoinColumn(name = "nguoidung_id",insertable = false,updatable = false)
@@ -47,12 +47,14 @@ public class GioHang implements Serializable {
 	@Column
 	private Date ngaycnhap;
 
-	public GioHangPK getGiohang_id() {
-		return giohang_id;
+
+
+	public GioHangPK getId() {
+		return id;
 	}
 
-	public void setGiohang_id(GioHangPK giohang_id) {
-		this.giohang_id = giohang_id;
+	public void setId(GioHangPK id) {
+		this.id = id;
 	}
 
 	public NguoiDung getNguoidung() {

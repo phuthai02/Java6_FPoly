@@ -33,6 +33,8 @@ public class NguoiDung implements Serializable{
 	private String diachi;
 	@Column
 	private String hinhanh;
+	@Column
+	private String vaitro;
 	// default
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -172,6 +174,14 @@ public class NguoiDung implements Serializable{
 
 	public void setDonhang(List<DonHang> donhang) {
 		this.donhang = donhang;
+	}
+
+	public String getVaitro() {
+		return vaitro;
+	}
+
+	public void setVaitro(String vaitro) {
+		this.vaitro = vaitro;
 	}
 	
 
