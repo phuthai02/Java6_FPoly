@@ -1,0 +1,63 @@
+<section class="py-2" th:fragment="homeView">
+	<div class="row gx-0 gy-3" id="content">
+		<div class="d-flex justify-content-center mt-5">
+			<label th:if="${products.getNumber()>0}"> <span
+				class="fas fa-step-backward fs-3 py-1 p-0 text-success"
+				th:onclick="getProduct(0,false)"></span> <span
+				class="fas fa-backward ms-3 py-1 fs-3 text-success"
+				th:onclick="getProduct([[${products.getNumber()-1}]],false)"></span>
+			</label> <label th:if="${products.getNumber()<=0}"> <span
+				class="fas fa-step-backward fs-3 py-1 p-0"></span> <span
+				class="fas fa-backward ms-3 py-1 fs-3"></span>
+			</label>
+
+			<h3 class="ms-3 fw-bold text-warning">[[${products.getNumber()+1
+				}]]/[[${products.getTotalPages()}]]</h3>
+			<label th:if="${products.getNumber()<products.getTotalPages()-1}">
+				<span class="fas fa-forward ms-3 py-1 fs-3 text-danger"
+				th:onclick="getProduct([[${products.getNumber()+1}]],false)"></span>
+				<span class="fas fa-step-forward ms-3 py-1 fs-3 text-danger"
+				th:onclick="getProduct([[${products.getTotalPages()-1}]],false)"></span>
+			</label> <label th:if="${products.getNumber()>=products.getTotalPages()-1}">
+				<span class="fas fa-forward ms-3 py-1 fs-3"></span> <span
+				class="fas fa-step-forward ms-3 py-1 fs-3"></span>
+			</label>
+		</div>
+		<div class="col-md-6 col-lg-4 col-xl-3 p-2"
+			th:each="obj : ${products.getContent()}" id="raucuqua">
+			<div class="card border border-2"
+				th:classappend="${obj.theloai eq 'R' ?'border-success':(obj.theloai eq 'C' ?'border-warning':'border-danger') }">
+				<div class="m-3">
+					<a th:href="@{/raucuqua/chitiet/{id}(id=${obj.id})}"> <img
+						th:src="@{/images/{name}(name=${obj.hinhanh})}" height="200px"
+						width="157px" class="card-img-top productImg" alt="...">
+					</a>
+				</div>
+				<div class="card-body m-0 pb-0" style="height: 160px">
+					<h5 class="card-title fw-bold" th:text="${obj.ten}"></h5>
+					<p class="card-text text-warning">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i><i class="fas fa-star"></i> <i
+							class="fas fa-star-half-stroke"></i>
+					</p>
+					<div class="card-text row">
+						<div class="fw-bold col-7">Số lượng còn lại:</div>
+						<p class="fw-bold col" th:text="${obj.soluong}"></p>
+					</div>
+					<div class="card-text row">
+						<div class="fw-bold col-4">Giá bán:</div>
+						<p class="fw-bold col" th:text="${obj.giatien}"></p>
+					</div>
+				</div>
+				<div class="card-footer">
+					<p class="card-text d-flex justify-content-between">
+						<a href="/login">
+							<button class="btn btn-outline-success">Mua hàng</button>
+						</a> <a href="/sach-tieng-anh/detail?id=${p.id }"><button
+								class="btn btn-outline-primary ms-2">Xem thêm</button></a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

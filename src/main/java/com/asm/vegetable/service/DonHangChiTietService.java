@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.asm.vegetable.entity.DonHangChiTiet;
 import com.asm.vegetable.entity.DonHangPK;
 import com.asm.vegetable.repository.DonHangChiTietRepository;
+import com.asm.vegetable.util.AppConstraint;
 
 @Service
 public class DonHangChiTietService {
@@ -43,9 +44,9 @@ public class DonHangChiTietService {
 	
 	public Page<DonHangChiTiet> getPage(int pageIndex, Boolean sortType) {
 		if (sortType) {
-			return rep.findAll(PageRequest.of(pageIndex, 10, Sort.by("id").ascending()));
+			return rep.findAll(PageRequest.of(pageIndex, AppConstraint.pageSize, Sort.by("id").ascending()));
 		} else {
-			return rep.findAll(PageRequest.of(pageIndex, 10, Sort.by("id").descending()));
+			return rep.findAll(PageRequest.of(pageIndex, AppConstraint.pageSize, Sort.by("id").descending()));
 		}
 	}
 	

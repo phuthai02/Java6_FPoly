@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.asm.vegetable.entity.NguoiDung;
 import com.asm.vegetable.repository.NguoiDungRepository;
+import com.asm.vegetable.util.AppConstraint;
 
 @Service
 public class NguoiDungService {
@@ -42,9 +43,9 @@ public class NguoiDungService {
 	
 	public Page<NguoiDung> getPage(int pageIndex, Boolean sortType) {
 		if (sortType) {
-			return rep.findAll(PageRequest.of(pageIndex, 10, Sort.by("id").ascending()));
+			return rep.findAll(PageRequest.of(pageIndex, AppConstraint.pageSize, Sort.by("id").ascending()));
 		} else {
-			return rep.findAll(PageRequest.of(pageIndex, 10, Sort.by("id").descending()));
+			return rep.findAll(PageRequest.of(pageIndex, AppConstraint.pageSize, Sort.by("id").descending()));
 		}
 	}
 	

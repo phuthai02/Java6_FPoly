@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.asm.vegetable.entity.RauCuQua;
 import com.asm.vegetable.repository.RauCuQuaRepository;
+import com.asm.vegetable.util.AppConstraint;
 
 @Service
 public class RauCuQuaService {
@@ -40,14 +41,6 @@ public class RauCuQuaService {
 		return rep.findAll();
 	}
 	
-	public Page<RauCuQua> getPage(int pageIndex, Boolean sortType) {
-		if (sortType) {
-			return rep.findAll(PageRequest.of(pageIndex, 10, Sort.by("id").ascending()));
-		} else {
-			return rep.findAll(PageRequest.of(pageIndex, 10, Sort.by("id").descending()));
-		}
-	}
-	
 	public List<Long> delete(List<Long> listId) {
 		if (listId != null) {
 			List<RauCuQua> listDelete = rep.findAllById(listId);
@@ -56,5 +49,18 @@ public class RauCuQuaService {
 		} else
 			return null;
 	}
+	public Page<RauCuQua> search(String key,Integer pageNumber) {
+		return rep.search(key,PageRequest.of(pageNumber, AppConstraint.pageSize, Sort.by("id").descending()));
+	}
+	public Page<RauCuQua> adminSearch(String key,Integer pageNumber) {
+		return rep.adminSearch(key,PageRequest.of(pageNumber, AppConstraint.pageSize, Sort.by("id").descending()));
+	}
+	public Page<RauCuQua> findByTheLoai(String theloai,Integer pageNumber) {
+		return rep.findByTheLoai(theloai,PageRequest.of(pageNumber, AppConstraint.pageSize, Sort.by("id").descending()));
+	}
+	public Page<RauCuQua> adminFindByTheLoai(String theloai,Integer pageNumber) {
+		return rep.adminFindByTheLoai(theloai,PageRequest.of(pageNumber, AppConstraint.pageSize, Sort.by("id").descending()));
+	}
+
 
 }

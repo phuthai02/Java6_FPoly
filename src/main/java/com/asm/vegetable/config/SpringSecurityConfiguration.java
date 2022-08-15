@@ -28,9 +28,9 @@ public class SpringSecurityConfiguration implements UserDetailsService {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		// @formatter:off
-		http.authorizeHttpRequests(authz -> authz.antMatchers("/","/raucuqua/**","/css/**","/images/**","/sanpham/**").permitAll()
-				.antMatchers("/admin/**").hasRole("admin")
-				.anyRequest().hasRole("user")
+		http.authorizeHttpRequests(authz -> authz.antMatchers("/","/api/**","/raucuqua/**","/css/**","/images/**","/js/**","/bootstrap/**","/sanpham/**").permitAll()
+//				.antMatchers("/admin/**").hasRole("admin")
+//				.anyRequest().hasRole("user")
 				).formLogin().defaultSuccessUrl("/raucuqua").permitAll().and()
 			.logout().permitAll();
 		;
